@@ -42,11 +42,16 @@ const Services = () => {
 
             </div >
             <div className='grid lg:grid-cols-2 grid-cols-1 lg:gap-x-24 mt-32 lg:px-20'>
-                <div className='flex justify-center items-center '><img style={{ width: '458px', height: '576px' }} src={treatment} alt="" /></div>
-                <div className='flex  flex-col justify-center items-center'>
+                <div className='flex justify-center items-center '><img  src={treatment} alt="" /></div>
+                <div className='flex  flex-col justify-center items-start'>
                     <h2 className=' text-accent text-4xl'>Exceptional Dental Care, on Your Terms</h2>
-                    <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsumis that it has a more-or-less normal distribution of letters,as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page</p>
+                    <p className='mt-5 text-xl'>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsumis that it has a more-or-less normal distribution of letters,as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page</p>
+                    <div className='mt-5'>
+                        <button className='btn bg-gradient-to-r from-secondary to-primary btn-primary text-white '>GET STARTED</button>
+                    </div>
+
                 </div>
+
             </div>
 
         </div>
