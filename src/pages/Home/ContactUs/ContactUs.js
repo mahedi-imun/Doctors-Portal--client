@@ -19,7 +19,7 @@ const ContactUs = () => {
                         <input className='p-2 rounded mt-4 lg:w-[450px] w-[100%] mx-auto' placeholder='Subject' type="text" {...register("subject", { required: true })} />
                         <textarea className='p-2 h-24 rounded mt-4 lg:w-[450px] w-[100%] mx-auto' placeholder='Your message' type="text" {...register("message", { required: true })} />
 
-                        <div className='text-center mt-8'>
+                        <div className='text-center mt-8 '>
                             <input className='btn  bg-gradient-to-r from-secondary to-primary text-white font-bold' type="Submit" value='submit' />
                         </div>
                     </div>
