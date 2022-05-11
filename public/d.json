@@ -1,0 +1,53 @@
+[
+    {
+      "name": "Teeth Orthodontics",
+      "slots": [
+       
+      ]
+    },
+    {
+      "name": "Cosmetic Dentistry",
+      "slots": [
+        "08.00 AM - 08.30 AM",
+        "08.30 AM - 09.00 AM",
+        "09.00 AM - 09.30 AM",
+        "09.30 AM - 10.00 AM",
+        "10.00 AM - 10.30 AM"
+      ]
+    },
+    {
+      "name": "Teeth Cleaning",
+      "slots": [
+        "08.00 AM - 08.30 AM",
+        "08.30 AM - 09.00 AM",
+        "09.00 AM - 09.30 AM",
+        "09.30 AM - 10.00 AM",
+        "10.00 AM - 10.30 AM"
+      ]
+    },
+    {
+      "name": "Endocrine System",
+      "slots": [
+        "08.00 AM - 08.30 AM",
+        "08.30 AM - 09.00 AM",
+        "09.00 AM - 09.30 AM",
+        "09.30 AM - 10.00 AM",
+        "10.00 AM - 10.30 AM"
+      ]
+    },
+    {
+      "name": "Eyes and Vision",
+      "slots": [
+        "08.00 AM - 08.30 AM",
+        "08.30 AM - 09.00 AM"
+    
+      ]
+    },
+    {
+      "name": "Blood, Heart and Circulation",
+      "slots": [
+        "09.00 AM - 09.30 AM",
+        "10.00 AM - 10.30 AM"
+      ]
+    }
+  ]
