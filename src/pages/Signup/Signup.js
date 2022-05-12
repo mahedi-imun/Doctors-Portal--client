@@ -1,29 +1,29 @@
-import React, { useEffect } from 'react';
-import { NavLink, useLocation, useNavigate } from 'react-router-dom';
+import React from 'react';
+import { useCreateUserWithEmailAndPassword, useSignInWithGoogle, useUpdateProfile } from 'react-firebase-hooks/auth';
+import { NavLink, useNavigate } from 'react-router-dom';
 import auth from '../../firebase.init';
-import { useSignInWithEmailAndPassword, useSignInWithGoogle } from 'react-firebase-hooks/auth';
 import { useForm } from "react-hook-form";
 import Loading from '../Shared/Loading/Loading';
-const Login = () => {
-    const location = - useLocation()
-    const navigate = useNavigate()
-    const from = location.state?.from?.pathname || "/";
+const Signup = () => {
     let errorElement;
-
+    const navigate = useNavigate()
+    const [updateProfile] = useUpdateProfile(auth);
     const [signInWithGoogle, googleUser, googleLoading, googleError] = useSignInWithGoogle(auth);
     const [
-        signInWithEmailAndPassword,
+        createUserWithEmailAndPassword,
         user,
         loading,
         error,
-    ] = useSignInWithEmailAndPassword(auth);
-
+    ] = useCreateUserWithEmailAndPassword(auth);
     const { register, handleSubmit, formState: { errors } } = useForm();
-    useEffect(() => {
-        if (googleUser || user) {
-            navigate(from, { replace: true });
-        }
-    }, [googleUser, user,from,navigate])
+
+    const onSubmit = async (data) => {
+        const { name, email, password } = data
+        console.log(data);
+         await createUserWithEmailAndPassword(email, password,);
+         await updateProfile({ displayName:name })
+
+    }
     if (loading || googleLoading) {
         return <Loading></Loading>
 
@@ -31,21 +31,34 @@ const Login = () => {
     if (error || googleError) {
         errorElement = <p className='text-red-600'>{error?.message || googleError?.message}</p>
 
-
     }
 
-
-    const onSubmit = data => {
-        signInWithEmailAndPassword(data.email, data.password);
+    if (googleUser || user) {
+        // navigate("/")
+        console.log( '' , user);
 
     }
-
     return (
         <div className=' flex min-h-[80vh] justify-center items-center'>
             <div className=" card w-96 bg-base-100 shadow-xl">
                 <div className="card-body ">
-                    <h2 className="card-title justify-center ">Login</h2>
+                    <h2 className="card-title justify-center ">Sign Up</h2>
                     <form onSubmit={handleSubmit(onSubmit)}>
+                        <label className="label">
+                            <span className="label-text text-lg">Name</span>
+                        </label>
+
+                        <input
+                            type="text" className="input  input-bordered w-full max-w-xs"
+                            {...register("name", {
+                                required: {
+                                    value: true,
+                                    message: 'name is required'
+                                },
+                            })}
+
+                        />
+                        {errors?.name?.type === 'required' && <span className=' label-text-alt text-red-700'>{errors?.name?.message}</span>}
                         <label className="label">
                             <span className="label-text text-lg">Email</span>
                         </label>
@@ -93,12 +106,11 @@ const Login = () => {
                         {errors.password?.type === 'required' && <span className='  text-red-700'> {errors?.password.message} </span>}
                         {errors.password?.type === 'minLength' && <span className='  text-red-700'>{errors.password.message}</span>}
 
-                        <p className=' ml-3 '><NavLink to='/'>  forgot password ?</NavLink></p>
                         {errorElement}
-                        <input type="submit" value='Login' className="input  mt-3 input-bordered w-full max-w-xs bg-accent text-white text-xl cursor-pointer" />
+                        <input type="submit" value='Sign Up' className=" btn  mt-3  w-full max-w-xs bg-accent text-white text-xl cursor-pointer" />
                     </form>
-                    <span className=' ml-3'> New to Doctors Portal?
-                        <NavLink className=' text-secondary' to='/signup'> Create new account</NavLink>
+                    <span className=' ml-3'> Already have an account?
+                        <NavLink className=' text-secondary' to='/login'> Login</NavLink>
                     </span>
                     <div className="divider">OR</div>
                     <button onClick={() => signInWithGoogle()}
@@ -110,4 +122,4 @@ const Login = () => {
     );
 };
 
-export default Login;   
+export default Signup;
