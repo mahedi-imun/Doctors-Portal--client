@@ -10,7 +10,7 @@ const Header = () => {
         <li><Link to="/login">Login</Link></li>
     </>
     return (
-        <div className='bg-base-100 sticky '>
+        <div className='bg-base-100   '>
             <div className="navbar  md:justify-around md:w-11/12 md:mx-auto ">
                 <div className="navbar-start">
                     <div className="dropdown">
