@@ -11,7 +11,12 @@ import Reviews from './pages/Reviews/Reviews';
 import Footer from './pages/Shared/Footer/Footer';
 import Header from './pages/Shared/Header/Header';
 import Signup from './pages/Signup/Signup';
+import { ToastContainer, } from 'react-toastify';
 
+import 'react-toastify/dist/ReactToastify.css';
+import Dashboard from './pages/Dashboard/Dashboard';
+import MyAppointment from './pages/Dashboard/MyAppointment';
+import MyReviews from './pages/Dashboard/MyReviews';
 function App() {
   return (
     <div className="App">
@@ -21,10 +26,18 @@ function App() {
         <Route path='/home' element={<Home />}></Route>
         <Route path='/about' element={<About />}></Route>
         <Route path='/appointment' element={
-        <RequireAuth>
-          <Appointment/>
-        </RequireAuth>}>
+          <RequireAuth>
+            <Appointment />
+          </RequireAuth>}>
 
+        </Route>
+        <Route path='/dashboard' element={
+          <RequireAuth>
+            <Dashboard />
+          </RequireAuth>
+          } >
+          <Route index element={ <MyAppointment/>}></Route>
+          <Route path='review' element={<MyReviews />}></Route>
         </Route>
         <Route path='/contactUs' element={<ContactUs />}></Route>
         <Route path='/reviews' element={<Reviews />}></Route>
@@ -33,6 +46,7 @@ function App() {
         {/* <Route path='*' element={<NotFoundPage/>}></Route> */}
       </Routes>
       <Footer></Footer>
+      <ToastContainer />
     </div>
 
   );
