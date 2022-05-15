@@ -22,7 +22,7 @@ const AppointmentModal = ({ treatment, date, setTreatment,refetch }) => {
             patientEmail: user.email,
             patientName: user.displayName
         }
-        axios.post('http://localhost:5000/booking',{bookingData})
+        axios.post('https://doctors-portal-bd.herokuapp.com/booking',{bookingData})
             .then( data => {
                 const success = data.data.success;
                 const booking = data.data.booking
@@ -63,7 +63,7 @@ const AppointmentModal = ({ treatment, date, setTreatment,refetch }) => {
                                 treatment?.slots.map(slot => <option option value={slot}>{slot}</option>)
                             }
                         </select>
-                        <input name='name' type="text" placeholder="Full Name" disabled={user?.displayName} value={user?.displayName} className="input input-bordered w-full max-w-xs" />
+                        <input name='name' type="text" placeholder="Full Name" disabled readOnly value={user?.displayName} className="input input-bordered w-full max-w-xs" />
                         <input name='phone' type="number" placeholder="Phone Number" className="input input-bordered w-full max-w-xs" />
                         <input value={user?.email} disabled name='email' type="email" placeholder="Email" className="input input-bordered w-full max-w-xs" />
                         <input type="submit" value="Submit" className=" bg-accent text-white input input-bordered w-full max-w-xs cursor-pointer" />

@@ -3,8 +3,8 @@ import { useForm } from "react-hook-form";
 import background from '../../../assets/images/appointment.png'
 const ContactUs = () => {
     const { register, handleSubmit } = useForm();
-    const onSubmit = (contactData) => {
-        console.log(contactData);
+    const onSubmit = (data) => {
+        console.log(data);
     }
     return (
         <div className=' my-24 p-12'  style={{ background: `url(${background})` }}>
