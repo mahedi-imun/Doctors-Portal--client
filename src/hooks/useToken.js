@@ -9,7 +9,7 @@ const useToken = (user) => {
             email: email,
         };
         if (email) {
-            fetch(`https://doctors-portal-bd.herokuapp.com/users/${email}`, {
+            fetch(`http://localhost:5000/users/${email}`, {
                 method: 'PUT',
                 headers: {
                     'content-type': 'application/json'
@@ -20,6 +20,7 @@ const useToken = (user) => {
                 .then(res => res.json())
                 .then(data => {
                     const accessToken = data.token;
+                    console.log(accessToken);
                     localStorage.setItem('accessToken', accessToken)
                     setToken(accessToken)
                 })

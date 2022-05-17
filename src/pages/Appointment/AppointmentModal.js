@@ -5,7 +5,7 @@ import {toast } from 'react-toastify';
 import { useAuthState } from 'react-firebase-hooks/auth';
 const axios = require('axios');
 const AppointmentModal = ({ treatment, date, setTreatment,refetch }) => {
-    console.log(treatment?.name);
+
     const [user] = useAuthState(auth);
     const bookingDate = format(date, 'PP')
     const handleFrom = event => {
@@ -18,11 +18,12 @@ const AppointmentModal = ({ treatment, date, setTreatment,refetch }) => {
             treatmentName: treatment.name,
             date: bookingDate,
             slot: slot,
+            price:treatment.price,
             phoneNumber: phoneNumber,
             patientEmail: user.email,
             patientName: user.displayName
         }
-        axios.post('https://doctors-portal-bd.herokuapp.com/booking',{bookingData})
+        axios.post('http://localhost:5000/booking',{bookingData})
             .then( data => {
                 const success = data.data.success;
                 const booking = data.data.booking

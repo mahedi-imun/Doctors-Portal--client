@@ -2,7 +2,7 @@ import { format } from 'date-fns';
 import { signOut } from 'firebase/auth';
 import React, { useEffect, useState } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import auth from '../../firebase.init';
 
 const MyAppointment = () => {
@@ -13,7 +13,7 @@ const MyAppointment = () => {
     const [MyAppointment, setAppointment] = useState([])
     useEffect(() => {
         if (user) {
-            fetch(`https://doctors-portal-bd.herokuapp.com/booking?patientEmail=${user.email}`, {
+            fetch(`http://localhost:5000/booking?patientEmail=${user.email}`, {
                 method: 'GET',
                 headers: {
                     'authorization': `Barer ${localStorage.getItem('accessToken')}`
@@ -61,6 +61,10 @@ const MyAppointment = () => {
                                 <td>{a.treatmentName}</td>
                                 <td>{a.slot}</td>
                                 <td>{a.date}</td>
+                                <td>
+                                    {(a.price && !a.pay) && <Link to={`/dashboard/payment/${a._id}`}><button className='btn btn-sm btn-success'>pay</button></Link>}
+                                    {(a.price && a.pay) &&<button className='btn btn-sm disabled btn-disabled '>pay</button>}
+                                </td>
                             </tr>)
                         }
 
