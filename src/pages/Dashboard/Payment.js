@@ -1,7 +1,11 @@
 import React from 'react';
+import { Elements,} from '@stripe/react-stripe-js';
+  import CheckoutForm from './CheckoutFrom'
 import { useQuery } from 'react-query';
 import { useParams } from 'react-router-dom';
 import Loading from '../Shared/Loading/Loading';
+import { loadStripe } from '@stripe/stripe-js';
+const stripePromise = loadStripe('pk_test_51L0Z9NHKPkPGbWfR23AenemDc8oGBjTTBB42S1xTYRTBGrzG8aYDlz1YXqSl0E2lB5xVJ0OfJlX6yifY384ot6Q200Q65Ed65y');
 
 const Payment = () => {
     const { id } = useParams()
@@ -18,9 +22,9 @@ const Payment = () => {
     if (isLoading) {
         return <Loading></Loading>
     }
-    const {treatmentName,slot,phoneNumber,price,patientName,patientEmail,date}=data
+    const { treatmentName, slot, phoneNumber, price, patientName, patientEmail, date } = data
     return (
-        <div className= ''>
+        <div className=' lg:flex lg:justify-around'>
             <div class="card w-96 bg-base-100 shadow-xl mt-5">
                 <div class="card-body">
                     <h2 class="card-title text-secondary ">Hi {patientName} </h2>
@@ -32,11 +36,11 @@ const Payment = () => {
             </div>
             <div class="card w-96 bg-base-100 shadow-xl mt-5">
                 <div class="card-body">
-                    <h2 class="card-title">Card title!</h2>
-                    <p>If a dog chews shoes whose shoes does he choose?</p>
-                    <div class="card-actions justify-end">
-                        <button class="btn btn-primary">Buy Now</button>
-                    </div>
+                    <h2 class="card-title text-center"> pay stripe</h2>
+
+                    <Elements stripe={stripePromise}>
+                        <CheckoutForm  data={data}/>
+                    </Elements>
                 </div>
             </div>
         </div>
